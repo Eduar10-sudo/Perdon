@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Me perdonas?</title>
+<style>
+:root{--bg:#ffd6e7;--ink:#5a1f3a;--sun:#ff6fa8;--sun-d:#d63d7c;--card:#fff5fa;--no:#f6c5d9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a0f1c;--ink:#ffd9ea;--card:#3a1727;--no:#5c2a42}}
+:root[data-theme="dark"]{--bg:#2a0f1c;--ink:#ffd9ea;--card:#3a1727;--no:#5c2a42}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+.card{background:var(--card);border-radius:28px;padding:36px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(214,61,124,.25)}
+.flor{font-size:64px;line-height:1}
+h1{font-size:30px;margin:16px 0 8px}
+p{font-size:18px;line-height:1.5;margin:0 0 24px;min-height:54px}
+.btns{display:flex;gap:14px;justify-content:center;align-items:center}
+button{font:inherit;font-size:20px;border:0;border-radius:999px;padding:14px 30px;cursor:pointer;color:var(--ink);transition:transform .2s}
+#si{background:var(--sun);font-weight:bold}
+#no{background:var(--no)}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.pop{animation:pop .5s}
+@keyframes pop{50%{transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.pop{animation:none}}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="flor" id="flor">🐱🎀</div>
+  <h1 id="t">¿Me perdonas?</h1>
+  <p id="m">Te traje un moño rosa para pedírtelo.</p>
+  <div class="btns" id="b">
+    <button id="si">Sí</button>
+    <button id="no">No</button>
+  </div>
+</div>
+<script>
+var si=document.getElementById('si'),no=document.getElementById('no');
+var t=document.getElementById('t'),m=document.getElementById('m'),f=document.getElementById('flor');
+var n=0;
+no.addEventListener('click',function(){
+  n++;
+  t.textContent='¿Quisiste decir que sí?';
+  m.textContent='Déjame ayudarte 😊';
+  f.textContent='😿🎀';
+  si.style.transform='scale('+(1+n*0.25)+')';
+  no.style.transform='scale('+Math.max(0.5,1-n*0.15)+')';
+  si.classList.remove('pop');void si.offsetWidth;si.classList.add('pop');
+});
+si.addEventListener('click',function(){
+  t.textContent='¡Muy bien! 💖';
+  m.textContent='Gracias por perdonarme.';
+  f.textContent='🎀💖🎀';
+  document.getElementById('b').style.display='none';
+});
+</script>
+</body>
+</html>
